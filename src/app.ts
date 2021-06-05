@@ -6,10 +6,10 @@ import flash from "express-flash";
 import session from "express-session";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "../build/routes";
+import MightyToken from "./middleware/MightyToken";
 import { MONGODB_URI } from "./util/secrets";
 
 // import routes from "./routes";
-// import { mightyToken } from "./middleware";
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(compression());
 app.use(express.json());
 app.use(cors());
 
-// app.use("/v1/*", mightyToken);
+app.use("/v2", MightyToken);
 
 app.use((_, response, next) => {
   response.header("Access-Control-Allow-Origin", "*");
