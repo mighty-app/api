@@ -10,4 +10,10 @@ export class ExerciseController extends Controller {
   async getExercise(@Path() exerciseId: string): Promise<Exercise | null> {
     return new RealExerciseService().getExercise(exerciseId);
   }
+
+  /** Get all exercises */
+  @Get()
+  async getExercises(): Promise<Exercise[] | null> {
+    return new RealExerciseService().getExercises();
+  }
 }
