@@ -33,6 +33,10 @@ export default class User {
   email!: string;
 
   @Field()
+  @prop({ unique: true })
+  username!: string;
+
+  @Field()
   @prop()
   picture!: string;
 
