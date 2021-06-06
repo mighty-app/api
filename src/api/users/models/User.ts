@@ -1,6 +1,7 @@
 import { DocumentType, pre, prop } from "@typegoose/typegoose";
 import bcrypt from "bcrypt";
 import { Field, ID, ObjectType } from "type-graphql";
+import RealAchievement from "../../achievements/models/RealAchievement";
 import { RealSafeUser, SafeUser } from "./SafeUser";
 
 /**
@@ -44,6 +45,10 @@ export default class User {
   @Field()
   @prop()
   password!: string;
+
+  @Field(() => [RealAchievement])
+  @prop({ ref: () => RealAchievement })
+  achievements!: RealAchievement[];
 
   public async comparePassword(this: DocumentType<User>, candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
