@@ -54,7 +54,7 @@ async function verifyExternalRequest(request: Request, response: Response, next:
   try {
     const hasBearerHeader = request.headers.authorization ? true : false;
 
-    console.log("EXTERNAL REQUEST: ", request);
+    console.log("EXTERNAL REQUEST: ", request.headers.authorization);
 
     if (!hasBearerHeader) throw Error;
 
