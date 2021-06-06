@@ -1,6 +1,7 @@
 import { DocumentType, pre, prop } from "@typegoose/typegoose";
 import bcrypt from "bcrypt";
 import { Field, ID, ObjectType } from "type-graphql";
+import { RealSafeUser, SafeUser } from "./SafeUser";
 
 /**
  * @tsoaModel
@@ -44,7 +45,11 @@ export default class User {
   @prop()
   password!: string;
 
-  public async comparePassword(this: DocumentType<User>, candidatePassword: string) {
+  public async comparePassword(this: DocumentType<User>, candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
+  }
+
+  public async toSafeUser(this: DocumentType<User>): Promise<SafeUser> {
+    return new RealSafeUser(this.id, this.firstName, this.lastName, this.email, this.username, this.picture);
   }
 }
