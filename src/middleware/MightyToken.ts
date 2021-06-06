@@ -19,6 +19,8 @@ interface Token {
 export default async function MightyToken(request: Request, response: Response, next: NextFunction) {
   const isInternal = request.headers["Requested-By"] ? true : false;
 
+  console.log("ORIGINAL REQUEST: ", request);
+
   if (isInternal) verifyInternalRequest(request, response, next);
   else verifyExternalRequest(request, response, next);
 }
@@ -51,6 +53,8 @@ async function verifyInternalRequest(request: Request, response: Response, next:
 async function verifyExternalRequest(request: Request, response: Response, next: NextFunction) {
   try {
     const hasBearerHeader = request.headers.authorization ? true : false;
+
+    console.log("EXTERNAL REQUEST: ", request);
 
     if (!hasBearerHeader) throw Error;
 
