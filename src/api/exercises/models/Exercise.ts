@@ -31,5 +31,5 @@ export default class Exercise {
 
   @Field(() => [Muscle])
   @prop({ ref: () => Muscle })
-  muscles!: Muscle[];
+  muscles?: Muscle[];
 }
