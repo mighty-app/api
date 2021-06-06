@@ -7,8 +7,5 @@ export default async function getUserLevel(userId: string): Promise<Level | null
   return await UserModel.findById(userId)
     .populate("level")
     .exec()
-    .then((user: DocumentType<User> | null) => {
-      console.log("GET LEVEL, USER: ", user);
-      return user?.level ?? null;
-    });
+    .then((user: DocumentType<User> | null) => user?.level ?? null);
 }

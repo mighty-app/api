@@ -19,8 +19,6 @@ interface Token {
 export default async function MightyToken(request: Request, response: Response, next: NextFunction) {
   const isInternal = request.headers["Requested-By"] ? true : false;
 
-  console.log("ORIGINAL REQUEST: ", request);
-
   if (isInternal) verifyInternalRequest(request, response, next);
   else verifyExternalRequest(request, response, next);
 }
@@ -54,22 +52,15 @@ async function verifyExternalRequest(request: Request, response: Response, next:
   try {
     const hasBearerHeader = request.headers.authorization ? true : false;
 
-    console.log("EXTERNAL REQUEST: ", request.headers.authorization);
-
     if (!hasBearerHeader) throw Error;
 
     const bearerToken = request.headers.authorization?.split(" ")[1];
 
-    console.log("BEARER TOKEN: ", bearerToken);
-
     if (!bearerToken) throw Error;
 
     const decoded = jwt.verify(bearerToken, KEYS!) as Token;
-    console.log("DECODED: ", decoded);
 
     const user = await UserModel.findById(decoded.userId);
-
-    console.log("USER: ", user);
 
     if (!user) throw Error;
 
@@ -78,7 +69,6 @@ async function verifyExternalRequest(request: Request, response: Response, next:
 
     next();
   } catch (error) {
-    console.log("ERROR: ", error);
     response.sendStatus(403);
   }
 }

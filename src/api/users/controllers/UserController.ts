@@ -22,7 +22,6 @@ export class UserController extends Controller {
   /** Get level by user ID */
   @Get("{userId}/level")
   async getUserLevel(@Path() userId: string): Promise<Level | null> {
-    console.log("USER ID", userId);
     return await new RealUserService().getUserLevel(userId);
   }
 }
