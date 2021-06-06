@@ -14,7 +14,7 @@ export default class MightyWorkout {
 
   @Field(() => Workout)
   @prop({ ref: () => Workout })
-  workout!: string;
+  workout?: string;
 
   @Field()
   @prop()
