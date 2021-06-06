@@ -16,9 +16,9 @@ export default class Level {
 
   @Field()
   @prop()
-  minXP!: number;
+  minXp!: number;
 
   @Field()
   @prop()
-  maxXP!: number;
+  maxXp!: number;
 }
