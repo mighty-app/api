@@ -10,4 +10,10 @@ export class MuscleController extends Controller {
   async getMuscle(@Path() muscleId: string): Promise<Muscle | null> {
     return new RealMuscleService().getMuscle(muscleId);
   }
+
+  /** Get all muscles */
+  @Get()
+  async getMuscles(): Promise<Muscle[] | null> {
+    return new RealMuscleService().getMuscles();
+  }
 }
