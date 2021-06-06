@@ -7,9 +7,8 @@ import session from "express-session";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "../build/routes";
 import MightyToken from "./middleware/MightyToken";
+import routes from "./routes";
 import { MONGODB_URI } from "./util/secrets";
-
-// import routes from "./routes";
 
 const app = express();
 
@@ -42,7 +41,7 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 
 app.use(flash());
 
-// app.use(routes);
+app.use(routes);
 
 RegisterRoutes(app);
 
