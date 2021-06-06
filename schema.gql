@@ -16,6 +16,15 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+"""Level model"""
+type Level {
+  graphic: String!
+  id: ID!
+  maxXp: Float!
+  minXp: Float!
+  number: Float!
+}
+
 type Mutation {
   createUser(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): User!
 }
@@ -39,6 +48,7 @@ type User {
   firstName: String!
   id: ID!
   lastName: String!
+  level: Level!
   password: String!
   picture: String!
   username: String!

@@ -2,6 +2,7 @@ import { DocumentType, pre, prop } from "@typegoose/typegoose";
 import bcrypt from "bcrypt";
 import { Field, ID, ObjectType } from "type-graphql";
 import RealAchievement from "../../achievements/models/RealAchievement";
+import Level from "../../levels/models/Level";
 import { RealSafeUser, SafeUser } from "./SafeUser";
 
 /**
@@ -45,6 +46,10 @@ export default class User {
   @Field()
   @prop()
   password!: string;
+
+  @Field(() => Level)
+  @prop({ ref: () => Level })
+  level!: Level;
 
   @Field(() => [RealAchievement])
   @prop({ ref: () => RealAchievement })
