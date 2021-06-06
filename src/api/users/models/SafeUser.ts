@@ -4,7 +4,7 @@ export interface SafeUser {
   lastName: string;
   email: string;
   username: string;
-  picture: string;
+  picture: string | null;
 }
 
 export class RealSafeUser implements SafeUser {
@@ -13,14 +13,14 @@ export class RealSafeUser implements SafeUser {
   readonly lastName: string;
   readonly email: string;
   readonly username: string;
-  readonly picture: string;
+  readonly picture: string | null;
 
-  constructor(id: string, firstName: string, lastName: string, email: string, username: string, picture: string) {
+  constructor(id: string, firstName: string, lastName: string, email: string, username: string, picture?: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.username = username;
-    this.picture = picture;
+    this.picture = picture ?? null;
   }
 }

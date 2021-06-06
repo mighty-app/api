@@ -41,7 +41,7 @@ export default class User {
 
   @Field()
   @prop()
-  picture!: string;
+  picture?: string;
 
   @Field()
   @prop()
@@ -49,11 +49,11 @@ export default class User {
 
   @Field(() => Level)
   @prop({ ref: () => Level })
-  level!: Level;
+  level?: Level;
 
   @Field(() => [RealAchievement])
   @prop({ ref: () => RealAchievement })
-  achievements!: RealAchievement[];
+  achievements?: RealAchievement[];
 
   public async comparePassword(this: DocumentType<User>, candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
