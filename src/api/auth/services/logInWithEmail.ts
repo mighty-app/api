@@ -6,7 +6,7 @@ import {
   UnsuccessfulLogIn,
   UnsuccessfulLogInReason
 } from "../../../entities/errors";
-import { SuccessfulLogIn } from "../../../entities/responses";
+import { RealSuccessfulLogIn, SuccessfulLogIn } from "../../../entities/responses";
 import { UserModel } from "../../../models";
 import { KEYS } from "../../../util/secrets";
 
@@ -32,7 +32,7 @@ export default async function logInWithEmail(
     if (!isMatch) throw UnsuccessfulLogInReason.IncorrectPassword;
 
     const token = jwt.sign({ userId: user.id }, KEYS!);
-    return response.json(new SuccessfulLogIn(user, token));
+    return response.json(new RealSuccessfulLogIn(user.toSafeUser(), token));
   } catch (error) {
     switch (error) {
       case UnsuccessfulLogInReason.IncorrectEmail:

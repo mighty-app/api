@@ -1,12 +1,15 @@
-import User from "../api/users/models/User";
+import { SafeUser } from "../api/users/models/SafeUser";
 
 export interface SuccessfulLogIn {
-  user: User;
+  user: SafeUser;
   token: string;
 }
 
-export class SuccessfulLogIn {
-  constructor(user: User, token: string) {
+export class RealSuccessfulLogIn implements SuccessfulLogIn {
+  readonly user: SafeUser;
+  readonly token: string;
+
+  constructor(user: SafeUser, token: string) {
     this.user = user;
     this.token = token;
   }

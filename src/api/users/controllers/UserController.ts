@@ -1,5 +1,5 @@
 import { Controller, Get, Path, Route, Tags } from "tsoa";
-import User from "../models/User";
+import { SafeUser } from "../models/SafeUser";
 import RealUserService from "../services/UserService";
 
 @Route("users")
@@ -7,7 +7,7 @@ import RealUserService from "../services/UserService";
 export class UserController extends Controller {
   /** Get user by ID */
   @Get("{userId}")
-  async getUser(@Path() userId: string): Promise<User | null> {
+  async getUser(@Path() userId: string): Promise<SafeUser | null> {
     return new RealUserService().getUser(userId);
   }
 }

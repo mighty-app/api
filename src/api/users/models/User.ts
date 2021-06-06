@@ -49,7 +49,7 @@ export default class User {
     return await bcrypt.compare(candidatePassword, this.password);
   }
 
-  public async toSafeUser(this: DocumentType<User>): Promise<SafeUser> {
+  public toSafeUser(this: DocumentType<User>): SafeUser {
     return new RealSafeUser(this.id, this.firstName, this.lastName, this.email, this.username, this.picture);
   }
 }

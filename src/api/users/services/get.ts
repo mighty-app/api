@@ -1,6 +1,6 @@
 import { UserModel } from "../../../models";
-import User from "../models/User";
+import { SafeUser } from "../models/SafeUser";
 
-export default async function getUser(userId: string): Promise<User | null> {
-  return await UserModel.findById(userId);
+export default async function getUser(userId: string): Promise<SafeUser | null> {
+  return await UserModel.findById(userId).toSafeUser();
 }
