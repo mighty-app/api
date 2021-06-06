@@ -47,6 +47,10 @@ export default class User {
   @prop()
   password!: string;
 
+  @Field()
+  @prop()
+  isLoggedIn?: boolean;
+
   @Field(() => Level)
   @prop({ ref: () => Level })
   level?: Level;
@@ -60,6 +64,14 @@ export default class User {
   }
 
   public toSafeUser(this: DocumentType<User>): SafeUser {
-    return new RealSafeUser(this.id, this.firstName, this.lastName, this.email, this.username, this.picture);
+    return new RealSafeUser(
+      this.id,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.username,
+      this.picture,
+      this.isLoggedIn
+    );
   }
 }

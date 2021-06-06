@@ -47,6 +47,7 @@ type User {
   email: String!
   firstName: String!
   id: ID!
+  isLoggedIn: Boolean!
   lastName: String!
   level: Level!
   password: String!
