@@ -1,4 +1,4 @@
-import RealAchievement from "../../achievements/models/RealAchievement";
+import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
 import { SafeUser } from "../models/SafeUser";
 import get from "./get";
@@ -7,7 +7,7 @@ import getLevel from "./getLevel";
 
 interface UserService {
   getUser(userId: string): Promise<SafeUser | null>;
-  getUserAchievements(userId: string): Promise<RealAchievement[] | null>;
+  getUserAchievements(userId: string): Promise<MightyAchievement[] | null>;
   getUserLevel(userId: string): Promise<Level | null>;
 }
 
@@ -16,7 +16,7 @@ export default class RealUserService implements UserService {
     return await get(userId);
   }
 
-  public async getUserAchievements(userId: string): Promise<RealAchievement[] | null> {
+  public async getUserAchievements(userId: string): Promise<MightyAchievement[] | null> {
     return await getAchievements(userId);
   }
 

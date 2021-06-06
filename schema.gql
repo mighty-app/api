@@ -25,6 +25,14 @@ type Level {
   number: Float!
 }
 
+"""Mighty achievement model"""
+type MightyAchievement {
+  achievement: Achievement!
+  id: ID!
+  timestamp: DateTime!
+  user: User!
+}
+
 type Mutation {
   createUser(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): User!
 }
@@ -33,17 +41,9 @@ type Query {
   user(id: String!): User
 }
 
-"""Real achievement model"""
-type RealAchievement {
-  achievement: Achievement!
-  id: ID!
-  timestamp: DateTime!
-  user: User!
-}
-
 """User model"""
 type User {
-  achievements: [RealAchievement!]!
+  achievements: [MightyAchievement!]!
   email: String!
   firstName: String!
   id: ID!

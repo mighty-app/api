@@ -3,8 +3,8 @@ import { Field, ID, ObjectType } from "type-graphql";
 import User from "../../users/models/User";
 import Achievement from "./Achievement";
 
-@ObjectType({ description: "Real achievement model" })
-export default class RealAchievement {
+@ObjectType({ description: "Mighty achievement model" })
+export default class MightyAchievement {
   @Field(() => ID)
   id!: string;
 

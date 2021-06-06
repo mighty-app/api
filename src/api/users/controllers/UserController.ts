@@ -1,5 +1,5 @@
 import { Controller, Get, Path, Route, Tags } from "tsoa";
-import RealAchievement from "../../achievements/models/RealAchievement";
+import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
 import { SafeUser } from "../models/SafeUser";
 import RealUserService from "../services/UserService";
@@ -15,7 +15,7 @@ export class UserController extends Controller {
 
   /** Get all achievements by user ID */
   @Get("{userId}/achievements")
-  async getUserAchievements(@Path() userId: string): Promise<RealAchievement[] | null> {
+  async getUserAchievements(@Path() userId: string): Promise<MightyAchievement[] | null> {
     return await new RealUserService().getUserAchievements(userId);
   }
 
