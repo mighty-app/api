@@ -10,18 +10,19 @@ export class UserController extends Controller {
   /** Get user by ID */
   @Get("{userId}")
   async getUser(@Path() userId: string): Promise<SafeUser | null> {
-    return new RealUserService().getUser(userId);
+    return await new RealUserService().getUser(userId);
   }
 
   /** Get all achievements by user ID */
   @Get("{userId}/achievements")
   async getUserAchievements(@Path() userId: string): Promise<RealAchievement[] | null> {
-    return new RealUserService().getUserAchievements(userId);
+    return await new RealUserService().getUserAchievements(userId);
   }
 
   /** Get level by user ID */
   @Get("{userId}/level")
   async getUserLevel(@Path() userId: string): Promise<Level | null> {
-    return new RealUserService().getUserLevel(userId);
+    console.log("USER ID", userId);
+    return await new RealUserService().getUserLevel(userId);
   }
 }

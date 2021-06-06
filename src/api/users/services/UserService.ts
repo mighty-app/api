@@ -21,6 +21,7 @@ export default class RealUserService implements UserService {
   }
 
   public async getUserLevel(userId: string): Promise<Level | null> {
+    console.log("USER SERVICE, USER ID: ", userId);
     return await getLevel(userId);
   }
 }
