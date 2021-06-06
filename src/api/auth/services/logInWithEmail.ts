@@ -32,6 +32,10 @@ export default async function logInWithEmail(
     if (!isMatch) throw UnsuccessfulLogInReason.IncorrectPassword;
 
     const token = jwt.sign({ userId: user.id }, KEYS!);
+
+    user.isLoggedIn = true;
+    await user.save();
+
     return response.json(new RealSuccessfulLogIn(user.toSafeUser(), token));
   } catch (error) {
     switch (error) {
