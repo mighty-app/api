@@ -1,4 +1,5 @@
 import { Controller, Get, Path, Route, Tags } from "tsoa";
+import Exercise from "../../exercises/models/Exercise";
 import Muscle from "../models/Muscle";
 import RealMuscleService from "../services/MuscleService";
 
@@ -15,5 +16,11 @@ export class MuscleController extends Controller {
   @Get()
   async getMuscles(): Promise<Muscle[] | null> {
     return new RealMuscleService().getMuscles();
+  }
+
+  /** Get all exercises by muscle ID */
+  @Get("{muscleId}/exercises")
+  async getExercises(@Path() muscleId: string): Promise<Exercise[] | null> {
+    return new RealMuscleService().getExercisesByMuscle(muscleId);
   }
 }
