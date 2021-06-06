@@ -60,6 +60,8 @@ async function verifyExternalRequest(request: Request, response: Response, next:
 
     const bearerToken = request.headers.authorization?.split(" ")[1];
 
+    console.log("BEARER TOKEN: ", bearerToken);
+
     if (!bearerToken) throw Error;
 
     const decoded = jwt.verify(bearerToken, KEYS!) as Token;
@@ -76,6 +78,7 @@ async function verifyExternalRequest(request: Request, response: Response, next:
 
     next();
   } catch (error) {
+    console.log("ERROR: ", error);
     response.sendStatus(403);
   }
 }
