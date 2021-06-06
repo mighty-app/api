@@ -63,8 +63,11 @@ async function verifyExternalRequest(request: Request, response: Response, next:
     if (!bearerToken) throw Error;
 
     const decoded = jwt.verify(bearerToken, KEYS!) as Token;
+    console.log("DECODED: ", decoded);
 
     const user = await UserModel.findById(decoded.userId);
+
+    console.log("USER: ", user);
 
     if (!user) throw Error;
 
