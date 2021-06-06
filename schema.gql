@@ -3,6 +3,19 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""Achievement model"""
+type Achievement {
+  description: String!
+  graphic: String!
+  id: ID!
+  name: String!
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 type Mutation {
   createUser(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): User!
 }
@@ -11,8 +24,17 @@ type Query {
   user(id: String!): User
 }
 
+"""Real achievement model"""
+type RealAchievement {
+  achievement: Achievement!
+  id: ID!
+  timestamp: DateTime!
+  user: User!
+}
+
 """User model"""
 type User {
+  achievements: [RealAchievement!]!
   email: String!
   firstName: String!
   id: ID!
