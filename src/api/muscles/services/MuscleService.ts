@@ -7,7 +7,7 @@ import getExercises from "./getExercises";
 interface MuscleService {
   getMuscle(muscleId: string): Promise<Muscle | null>;
   getMuscles(): Promise<Muscle[] | null>;
-  getExercisesByMuscle(muscleId: string): Promise<Exercise[] | null>;
+  getMuscleExercises(muscleId: string): Promise<Exercise[] | null>;
 }
 
 export default class RealMuscleService implements MuscleService {
@@ -19,7 +19,7 @@ export default class RealMuscleService implements MuscleService {
     return await getAll();
   }
 
-  public async getExercisesByMuscle(muscleId: string): Promise<Exercise[] | null> {
+  public async getMuscleExercises(muscleId: string): Promise<Exercise[] | null> {
     return await getExercises(muscleId);
   }
 }

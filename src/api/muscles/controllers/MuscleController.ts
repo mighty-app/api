@@ -20,7 +20,7 @@ export class MuscleController extends Controller {
 
   /** Get all exercises by muscle ID */
   @Get("{muscleId}/exercises")
-  async getExercises(@Path() muscleId: string): Promise<Exercise[] | null> {
-    return new RealMuscleService().getExercisesByMuscle(muscleId);
+  async getMuscleExercises(@Path() muscleId: string): Promise<Exercise[] | null> {
+    return new RealMuscleService().getMuscleExercises(muscleId);
   }
 }
