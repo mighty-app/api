@@ -1,14 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import {
-  IncorrectEmail,
-  IncorrectPassword,
-  UnsuccessfulLogIn,
-  UnsuccessfulLogInReason
-} from "../../../entities/errors";
-import { RealSuccessfulLogIn, SuccessfulLogIn } from "../../../entities/responses";
 import { UserModel } from "../../../models";
 import { KEYS } from "../../../util/secrets";
+import { IncorrectEmail, IncorrectPassword, UnsuccessfulAuth, UnsuccessfulLogInReason } from "../entities/errors";
+import { SuccessfulAuth, SuccessfulLogIn } from "../entities/responses";
 
 interface LogInWithEmailInput {
   email: string;
@@ -19,7 +14,7 @@ export default async function logInWithEmail(
   request: Request,
   response: Response,
   _: NextFunction
-): Promise<Response<SuccessfulLogIn | UnsuccessfulLogIn>> {
+): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>> {
   try {
     const { email, password }: LogInWithEmailInput = request.body;
 
@@ -36,7 +31,7 @@ export default async function logInWithEmail(
     user.isLoggedIn = true;
     await user.save();
 
-    return response.json(new RealSuccessfulLogIn(user.toSafeUser(), token));
+    return response.json(new SuccessfulLogIn(user.toSafeUser(), token));
   } catch (error) {
     switch (error) {
       case UnsuccessfulLogInReason.IncorrectEmail:

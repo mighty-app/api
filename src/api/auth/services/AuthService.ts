@@ -1,14 +1,21 @@
 import { NextFunction, Request, Response } from "express";
-import { UnsuccessfulLogIn } from "../../../entities/errors";
-import { SuccessfulLogIn } from "../../../entities/responses";
+import { UnsuccessfulAuth } from "../entities/errors";
+import { SuccessfulAuth } from "../entities/responses";
 import logInWithEmail from "./logInWithEmail";
+import signUpWithEmail from "./signUpWithEmail";
 
 interface AuthService {
   logInWithEmail(
     request: Request,
     response: Response,
     next: NextFunction
-  ): Promise<Response<SuccessfulLogIn | UnsuccessfulLogIn>>;
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>>;
+
+  signUpWithEmail(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>>;
 }
 
 export default class RealAuthService implements AuthService {
@@ -16,7 +23,15 @@ export default class RealAuthService implements AuthService {
     request: Request,
     response: Response,
     next: NextFunction
-  ): Promise<Response<SuccessfulLogIn | UnsuccessfulLogIn>> {
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>> {
     return await logInWithEmail(request, response, next);
+  }
+
+  public async signUpWithEmail(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>> {
+    return await signUpWithEmail(request, response, next);
   }
 }
