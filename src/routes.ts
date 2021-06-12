@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/auth/login/email", new RealAuthService().logInWithEmail);
 router.post("/auth/signup/email", new RealAuthService().signUpWithEmail);
+router.post("/auth/token/validate", new RealAuthService().validateToken);
 
 router.get("/spec", new RealSpecService().getSpec);
 

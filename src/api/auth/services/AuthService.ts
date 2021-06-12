@@ -3,6 +3,7 @@ import { UnsuccessfulAuth } from "../entities/errors";
 import { SuccessfulAuth } from "../entities/responses";
 import logInWithEmail from "./logInWithEmail";
 import signUpWithEmail from "./signUpWithEmail";
+import validateToken from "./validateToken";
 
 interface AuthService {
   logInWithEmail(
@@ -12,6 +13,12 @@ interface AuthService {
   ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>>;
 
   signUpWithEmail(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>>;
+
+  validateToken(
     request: Request,
     response: Response,
     next: NextFunction
@@ -33,5 +40,13 @@ export default class RealAuthService implements AuthService {
     next: NextFunction
   ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>> {
     return await signUpWithEmail(request, response, next);
+  }
+
+  public async validateToken(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<Response<SuccessfulAuth | UnsuccessfulAuth>> {
+    return await validateToken(request, response, next);
   }
 }
