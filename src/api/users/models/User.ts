@@ -21,6 +21,7 @@ import { RealSafeUser, SafeUser } from "./SafeUser";
 @ObjectType({ description: "User model" })
 export default class User {
   @Field(() => ID)
+  @prop({ ref: () => User })
   id!: string;
 
   @Field()
