@@ -8,6 +8,7 @@ export default class MightyWorkoutSet {
   id!: string;
 
   @Field()
+  @prop()
   reps!: number;
 
   @Field()
@@ -20,5 +21,5 @@ export default class MightyWorkoutSet {
 
   @Field(() => ID)
   @prop({ ref: () => MightyWorkout })
-  workout!: Ref<MightyWorkout>;
+  workout!: Ref<MightyWorkout, string>;
 }

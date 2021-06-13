@@ -11,15 +11,15 @@ export default class MightyWorkout {
 
   @Field(() => ID)
   @prop({ ref: () => User })
-  user!: Ref<User>;
+  user!: Ref<User, string>;
 
   @Field(() => ID)
   @prop({ ref: () => Workout })
-  workout?: Ref<Workout>;
+  workout?: Ref<Workout, string>;
 
   @Field(() => [ID])
   @prop({ ref: () => MightyWorkoutSet })
-  workoutSets?: Ref<MightyWorkoutSet[]>;
+  workoutSets?: Ref<MightyWorkoutSet[], Buffer>;
 
   @Field()
   @prop()
