@@ -19,7 +19,7 @@ export default class MightyWorkout {
 
   @Field(() => [ID])
   @prop({ ref: () => MightyWorkoutSet })
-  workoutSets?: Ref<MightyWorkoutSet[], Buffer>;
+  workoutSets?: Ref<MightyWorkoutSet, string>[];
 
   @Field()
   @prop()
