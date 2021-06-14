@@ -4,7 +4,7 @@ import get from "./get";
 
 interface WorkoutService {
   getWorkout(workoutId: string): Promise<Workout | null>;
-  createWorkout(name: string, description: string, workoutSets: string[]): Promise<Workout>;
+  createWorkout(name: string, description: string, workoutSets: string[], author: string): Promise<Workout>;
 }
 
 export default class RealWorkoutService implements WorkoutService {
@@ -12,7 +12,12 @@ export default class RealWorkoutService implements WorkoutService {
     return await get(workoutId);
   }
 
-  public async createWorkout(name: string, description: string, workoutSets: string[]): Promise<Workout> {
-    return await create(name, description, workoutSets);
+  public async createWorkout(
+    name: string,
+    description: string,
+    workoutSets: string[],
+    author: string
+  ): Promise<Workout> {
+    return await create(name, description, workoutSets, author);
   }
 }

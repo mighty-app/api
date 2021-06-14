@@ -9,7 +9,7 @@ import RealWorkoutService from "../services/WorkoutService";
 export class WorkoutController extends Controller {
   /** Create workout */
   @Post()
-  async createWorkout(@Body() { name, description, workoutSets }: CreateWorkoutInput): Promise<Workout> {
-    return new RealWorkoutService().createWorkout(name, description, workoutSets);
+  async createWorkout(@Body() { name, description, workoutSets, author }: CreateWorkoutInput): Promise<Workout> {
+    return new RealWorkoutService().createWorkout(name, description, workoutSets, author);
   }
 }

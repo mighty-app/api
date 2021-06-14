@@ -12,4 +12,5 @@ export interface CreateWorkoutInput {
   name: string;
   description: string;
   workoutSets: string[];
+  author: string;
 }
