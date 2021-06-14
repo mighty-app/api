@@ -1,4 +1,4 @@
-import { prop } from "@typegoose/typegoose";
+import { prop, Ref } from "@typegoose/typegoose";
 import { Field, ID, ObjectType } from "type-graphql";
 import WorkoutSet from "../../workoutsets/models/WorkoutSet";
 
@@ -15,7 +15,7 @@ export default class Workout {
   @prop()
   description!: string;
 
-  @Field(() => [WorkoutSet])
+  @Field(() => [ID])
   @prop({ ref: () => WorkoutSet })
-  workoutSets!: WorkoutSet[];
+  workoutSets!: Ref<WorkoutSet, string>[];
 }
