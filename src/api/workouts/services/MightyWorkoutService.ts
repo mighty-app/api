@@ -1,10 +1,17 @@
+import { MightyError } from "../../../errors";
+import { MightyWorkoutUpdate } from "../entities/inputs";
 import MightyWorkout from "../models/MightyWorkout";
 import createMighty from "./createMighty";
 import getMighty from "./getMighty";
+import updateMighty from "./updateMighty";
 
 interface MightyWorkoutService {
   getMightyWorkout(mightyWorkoutId: string): Promise<MightyWorkout | null>;
   createMightyWorkout(userId: string, workoutId?: string): Promise<MightyWorkout>;
+  updateMightyWorkout(
+    mightyWorkoutId: string,
+    update: MightyWorkoutUpdate
+  ): Promise<MightyWorkout | MightyError | null>;
 }
 
 export default class RealMightyWorkoutService implements MightyWorkoutService {
@@ -14,5 +21,12 @@ export default class RealMightyWorkoutService implements MightyWorkoutService {
 
   public async createMightyWorkout(userId: string, workoutId?: string): Promise<MightyWorkout> {
     return await createMighty(userId, workoutId);
+  }
+
+  public async updateMightyWorkout(
+    mightyWorkoutId: string,
+    update: MightyWorkoutUpdate
+  ): Promise<MightyWorkout | MightyError | null> {
+    return await updateMighty(mightyWorkoutId, update);
   }
 }
