@@ -1,4 +1,4 @@
-import { prop } from "@typegoose/typegoose";
+import { prop, Ref } from "@typegoose/typegoose";
 import { Field, ID, ObjectType } from "type-graphql";
 import Exercise from "../../exercises/models/Exercise";
 
@@ -11,7 +11,7 @@ export default class WorkoutSet {
   @prop()
   reps!: number;
 
-  @Field(() => Exercise)
+  @Field(() => ID)
   @prop({ ref: () => Exercise })
-  exercise!: Exercise;
+  exercise!: Ref<Exercise, string>;
 }
