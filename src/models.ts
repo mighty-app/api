@@ -4,6 +4,7 @@ import MightyAchievement from "./api/achievements/models/MightyAchievement";
 import Exercise from "./api/exercises/models/Exercise";
 import Level from "./api/levels/models/Level";
 import Muscle from "./api/muscles/models/Muscle";
+import MightyToken from "./api/tokens/models/MightyToken";
 import User from "./api/users/models/User";
 import MightyWorkout from "./api/workouts/models/MightyWorkout";
 import Workout from "./api/workouts/models/Workout";
@@ -17,6 +18,7 @@ export const MightyWorkoutModel = getModelForClass(MightyWorkout);
 export const MightyWorkoutSetModel = getModelForClass(MightyWorkoutSet);
 export const MuscleModel = getModelForClass(Muscle);
 export const MightyAchievementModel = getModelForClass(MightyAchievement);
+export const MightyTokenModel = getModelForClass(MightyToken)
 export const WorkoutModel = getModelForClass(Workout);
 export const WorkoutSetModel = getModelForClass(WorkoutSet);
 export const UserModel = getModelForClass(User);
