@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Path, Post, Route, Tags } from "@tsoa/runtime";
 import { MightyError } from "../../../errors";
 import { CreateMightyWorkoutInput, MightyWorkoutUpdate } from "../entities/inputs";
+import { MightyWorkoutSummary } from "../entities/MightyWorkoutSummary";
 import MightyWorkout from "../models/MightyWorkout";
 import RealMightyWorkoutService from "../services/MightyWorkoutService";
 
@@ -26,5 +27,12 @@ export class MightyWorkoutController extends Controller {
     @Body() update: MightyWorkoutUpdate
   ): Promise<MightyWorkout | MightyError | null> {
     return new RealMightyWorkoutService().updateMightyWorkout(mightyWorkoutId, update);
+  }
+
+  /** Get Mighty workout summary */
+  @Get("{mightyWorkoutId}/summary")
+  @Tags("Mighty Workout", "Mighty Workout Summary")
+  async getMightyWorkoutSummary(@Path() mightyWorkoutId: string): Promise<MightyWorkoutSummary | null> {
+    return new RealMightyWorkoutService().getMightyWorkoutSummary(mightyWorkoutId)
   }
 }
