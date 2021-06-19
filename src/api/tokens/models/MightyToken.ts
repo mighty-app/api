@@ -1,6 +1,7 @@
-import { prop, Ref } from "@typegoose/typegoose";
+import { DocumentType, prop, Ref } from "@typegoose/typegoose";
 import { Field, ID, ObjectType } from "type-graphql";
 import User from "../../users/models/User";
+import { RealSafeMightyToken, SafeMightyToken } from "../entities/SafeMightyToken";
 import { TokenType } from "../entities/TokenType";
 
 @ObjectType({description: 'Mighty token model'})
@@ -18,7 +19,7 @@ export default class MightyToken {
 
   @Field()
   @prop({enum: TokenType})
-  type!: string
+  type!: TokenType
 
   @Field(() => ID)
   @prop({ref: () => User})
@@ -27,4 +28,13 @@ export default class MightyToken {
   @Field()
   @prop()
   created!: Date
+
+  public toSafeMightyToken(this: DocumentType<MightyToken>): SafeMightyToken {
+    return new RealSafeMightyToken(
+      this.id,
+      this.name,
+      this.type,
+      this.created
+    )
+  }
 }
