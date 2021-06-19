@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { Field, ID, ObjectType } from "type-graphql";
 import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
+import MightyToken from "../../tokens/models/MightyToken";
 import Workout from "../../workouts/models/Workout";
 import { RealSafeUser, SafeUser } from "./SafeUser";
 
@@ -52,6 +53,10 @@ export default class User {
   @Field()
   @prop()
   isLoggedIn?: boolean;
+
+  @Field(() => ID)
+  @prop({ref: () => MightyToken})
+  tokens?: Ref<MightyToken, string>[]
 
   @Field(() => Level)
   @prop({ ref: () => Level })

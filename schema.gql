@@ -52,6 +52,7 @@ type User {
   level: Level!
   password: String!
   picture: String!
+  tokens: ID!
   username: String!
   workoutsAuthored: ID!
 }
