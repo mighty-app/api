@@ -76,7 +76,7 @@ export default class User {
 
   public toSafeUser(this: DocumentType<User>): SafeUser {
     return new RealSafeUser(
-      this.id,
+      this._id,
       this.firstName,
       this.lastName,
       this.email,
