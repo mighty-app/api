@@ -1,6 +1,7 @@
-import { Controller, Get, Path, Route, Tags } from "tsoa";
+import { Body, Controller, Get, Path, Post, Route, Tags } from "tsoa";
 import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
+import { FollowOtherUserInput } from "../entities/inputs";
 import { SafeUser } from "../models/SafeUser";
 import RealUserService from "../services/UserService";
 
@@ -23,5 +24,11 @@ export class UserController extends Controller {
   @Get("{userId}/level")
   async getUserLevel(@Path() userId: string): Promise<Level | null> {
     return await new RealUserService().getUserLevel(userId);
+  }
+
+  /** Follow other user */
+  @Post("{userId}/following")
+  async followOtherUser(@Path() userId: string, @Body() {otherUserId}: FollowOtherUserInput): Promise<SafeUser | null> {
+    return await new RealUserService().followOtherUser(userId, otherUserId)
   }
 }
