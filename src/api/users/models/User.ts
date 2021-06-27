@@ -70,6 +70,14 @@ export default class User {
   @prop({ ref: () => Workout })
   workoutsAuthored?: Ref<Workout, string>[];
 
+  @Field(() => ID)
+  @prop({ref: () => User })
+  usersFollowing?: Ref<User, string>[]
+
+  @Field(() => ID)
+  @prop({ref: () => User})
+  usersFollowedBy?: Ref<User, string>[]
+
   public async comparePassword(this: DocumentType<User>, candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
   }
