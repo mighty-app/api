@@ -7,6 +7,7 @@ import get from "./get";
 import getAchievements from "./getAchievements";
 import getLevel from "./getLevel";
 import getMightyTokens from './getMightyTokens';
+import unfollowUser from './unfollowUser';
 
 interface UserService {
   getUser(userId: string): Promise<SafeUser | null>;
@@ -14,6 +15,7 @@ interface UserService {
   getUserLevel(userId: string): Promise<Level | null>;
   getUserMightyTokens(userId: string): Promise<SafeMightyToken[] | null>
   followOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null>
+  unfollowOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null>
 }
 
 export default class RealUserService implements UserService {
@@ -35,5 +37,9 @@ export default class RealUserService implements UserService {
 
   public async followOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null> {
     return await followUser(userId, otherUserId)
+  }
+
+  public async unfollowOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null> {
+    return await unfollowUser(userId, otherUserId)
   }
 }

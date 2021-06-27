@@ -1,4 +1,4 @@
-import { Controller, Get, Path, Post, Put, Route, Tags } from "tsoa";
+import { Controller, Get, Path, Put, Route, Tags } from "tsoa";
 import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
 import { SafeUser } from "../models/SafeUser";
@@ -32,5 +32,8 @@ export class UserController extends Controller {
   }
 
   /** Unfollow other user */
-  @Post()
+  @Put ("{userId}/{otherUserId}/unfollow")
+  async unfollowOtherUser(@Path() userId: string, otherUserId: string): Promise<SafeUser | null> {
+    return await new RealUserService().unfollowOtherUser(userId, otherUserId)
+  }
 }
