@@ -1,7 +1,6 @@
-import { Body, Controller, Get, Path, Post, Route, Tags } from "tsoa";
+import { Controller, Get, Path, Post, Put, Route, Tags } from "tsoa";
 import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
-import { FollowOtherUserInput } from "../entities/inputs";
 import { SafeUser } from "../models/SafeUser";
 import RealUserService from "../services/UserService";
 
@@ -27,8 +26,11 @@ export class UserController extends Controller {
   }
 
   /** Follow other user */
-  @Post("{userId}/following")
-  async followOtherUser(@Path() userId: string, @Body() {otherUserId}: FollowOtherUserInput): Promise<SafeUser | null> {
+  @Put("{userId}/{otherUserId}/follow")
+  async followOtherUser(@Path() userId: string, otherUserId: string): Promise<SafeUser | null> {
     return await new RealUserService().followOtherUser(userId, otherUserId)
   }
+
+  /** Unfollow other user */
+  @Post()
 }
