@@ -13,8 +13,8 @@ export default async function followUser(userId: string, otherUserId: string): P
     if (otherUser.usersFollowedBy) otherUser.usersFollowedBy.push(userId)
     else otherUser.usersFollowedBy = [userId]
 
-    user.save()
-    otherUser.save()
+    await user.save()
+    await otherUser.save()
 
     return user.toSafeUser()
 
