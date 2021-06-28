@@ -36,4 +36,10 @@ export class UserController extends Controller {
   async unfollowOtherUser(@Path() userId: string, otherUserId: string): Promise<SafeUser | null> {
     return await new RealUserService().unfollowOtherUser(userId, otherUserId)
   }
+
+  /** Follow other program */
+  @Put("{userId}/programs/{programId}/follow")
+  async followOtherProgram(@Path() userId: string, programId: string): Promise<SafeUser | null> {
+    return await new RealUserService().followOtherProgram(userId, programId)
+  }
 }

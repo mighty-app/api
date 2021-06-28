@@ -2,6 +2,7 @@ import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
 import { SafeMightyToken } from "../../tokens/entities/SafeMightyToken";
 import { SafeUser } from "../models/SafeUser";
+import followProgram from './followProgram';
 import followUser from "./followUser";
 import get from "./get";
 import getAchievements from "./getAchievements";
@@ -16,6 +17,7 @@ interface UserService {
   getUserMightyTokens(userId: string): Promise<SafeMightyToken[] | null>
   followOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null>
   unfollowOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null>
+  followOtherProgram(userId: string, programId: string): Promise<SafeUser | null>
 }
 
 export default class RealUserService implements UserService {
@@ -41,5 +43,9 @@ export default class RealUserService implements UserService {
 
   public async unfollowOtherUser(userId: string, otherUserId: string): Promise<SafeUser | null> {
     return await unfollowUser(userId, otherUserId)
+  }
+
+  public async followOtherProgram(userId: string, programId: string): Promise<SafeUser | null> {
+    return await followProgram(userId, programId)
   }
 }
