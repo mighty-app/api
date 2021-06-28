@@ -12,6 +12,16 @@ export class MightyWorkoutNotFound implements MightyError {
   }
 }
 
+export class ProgramNotFound implements MightyError {
+  readonly message = "Program not found";
+  readonly error?: any;
+
+  constructor(error?: any) {
+    this.error = error;
+  }
+}
+
+
 export class InvalidUpdateKey implements MightyError {
   readonly message = "Invalid update key";
   readonly error?: any;
