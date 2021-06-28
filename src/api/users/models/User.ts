@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { Field, ID, ObjectType } from "type-graphql";
 import MightyAchievement from "../../achievements/models/MightyAchievement";
 import Level from "../../levels/models/Level";
+import Program from '../../programs/models/Program';
 import MightyToken from "../../tokens/models/MightyToken";
 import Workout from "../../workouts/models/Workout";
 import { RealSafeUser, SafeUser } from "./SafeUser";
@@ -77,6 +78,10 @@ export default class User {
   @Field(() => ID)
   @prop({ref: () => User})
   usersFollowedBy?: Ref<User, string>[]
+
+  @Field(() => ID)
+  @prop({ref: () => Program})
+  programFollowing?: Ref<Program, string>
 
   public async comparePassword(this: DocumentType<User>, candidatePassword: string): Promise<boolean> {
     return await bcrypt.compare(candidatePassword, this.password);
